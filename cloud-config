@@ -1,0 +1,61 @@
+#cloud-config
+ 
+hostname: chihiro
+ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAyukAK+pD6B3EkOlGtTC5Oyqx9N/1AZYqkaP0QEVn6pr+vkXlhE7CljfTT1egRGp76Ud18H3tCLDy6rhTpH5Kb+96eC8AWeKNrFbQWEjaBPbPlMUa96AeY+HXqH8JlHPkPu8k0BRVpnfeC6WKth8qU7j5CyqIH+SArKX5RvNgbqsxnR0X0XuvBKCiWt90yqnEC7JvCuznCKPeeLUOOjtf/9kYBfDIZdBKvIYxTZ7nx1WXQMeVxmsQrM29BPtZSXGhNQhDPHzIxDV8bNrXy5HXpCIQS3Qsv+T1TMgYjAl+C/1T+CW5wC+rLJTpdOjlRJThBYJw1xgQsfUIPedh3kEEpQ==
+users:
+  name: eatnumber1
+  groups:
+    - sudo
+    - docker
+  coreos-ssh-import-github: eatnumber1
+coreos:
+  update:
+    reboot-strategy: off
+  etcd:
+    name: chihiro
+    discovery: https://discovery.etcd.io/edccfeb3f12948075aaf0a1dddd0a19f
+  units:
+    - name: custom-reboot.service
+      runtime: true
+      content: |
+        [Unit]
+        Description=Reboot if needed
+
+        [Service]
+        ExecStart=/usr/bin/bash -c 'if update_engine_client -status | grep NEED_REBOOT; then reboot; fi' 
+    - name: custom-reboot.timer
+      runtime: true
+      command: start
+      content: |
+        [Unit]
+        Description=Reboot if needed at 05:00 daily
+
+        [Timer]
+        OnCalendar=*-*-* 05:00:00
+    - name: var-lib-docker.mount
+      command: start
+      content: |
+        [Unit]
+        Description=Mount docker subvol to /var/lib/docker
+        Before=docker.service
+
+        [Mount]
+        What=/dev/disk/by-label/space
+        Where=/var/lib/docker
+        Type=btrfs
+        Options=subvol=docker
+    - name: space.mount
+      command: start
+      content: |
+        [Unit]
+        Description=Mount space to /space
+
+        [Mount]
+        What=/dev/disk/by-label/space
+        Where=/space
+        Type=btrfs
+    - name: etcd.service
+      command: start
+    - name: fleet.service
+      command: start

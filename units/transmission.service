@@ -1,0 +1,13 @@
+[Unit]
+Description=Transmission torrent client
+After=docker.service
+Requires=docker.service
+Before=transmission.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill transmission
+ExecStartPre=-/usr/bin/docker rm transmission
+#ExecStartPre=/usr/bin/docker pull transmission
+ExecStart=/usr/bin/docker run --name transmission -p 51413:51413 -p 51413:51413/udp -v /space/media/transmission/downloads:/var/lib/transmission-daemon/downloads -v /space/media/transmission/incomplete:/var/lib/transmission-daemon/incomplete -v /space/media/transmission/torrents:/var/lib/transmission-daemon/info/torrents eatnumber1/transmission
+ExecStop=/usr/bin/docker stop transmission

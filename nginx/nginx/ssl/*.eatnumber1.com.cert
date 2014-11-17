@@ -1,0 +1,109 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 1 (0x1)
+    Signature Algorithm: sha1WithRSAEncryption
+        Issuer: SN=Harmon, GN=Russell, CN=Russell Harmon
+        Validity
+            Not Before: Sep 30 13:32:20 2013 GMT
+            Not After : Sep 29 13:32:20 2018 GMT
+        Subject: CN=eatnumber1.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (2048 bit)
+                Modulus:
+                    00:be:1c:98:f4:18:fa:54:9b:93:c5:75:7e:8b:4a:
+                    be:63:8a:5a:5a:06:37:63:27:3a:f9:ae:c7:9d:ec:
+                    f9:62:8d:b8:78:e9:5b:e6:9c:ae:a3:8e:47:be:dc:
+                    c9:2c:13:e6:8f:18:8f:98:a0:4d:b3:58:0b:83:19:
+                    1d:e6:5d:d7:6c:8f:c6:d5:2e:67:d7:0d:61:a5:15:
+                    bc:56:aa:de:00:d0:10:c8:6d:10:79:d0:11:5d:e5:
+                    0c:9c:3c:d1:b8:11:ab:43:91:68:b2:83:f7:e3:7b:
+                    19:82:b1:20:8e:38:39:10:b3:ef:8e:03:ce:b0:35:
+                    2b:a3:9f:34:70:75:dd:e6:fd:45:83:41:b2:b4:76:
+                    f4:60:6c:c7:9f:93:46:a2:d7:27:14:38:b1:ba:7a:
+                    1a:61:f4:21:20:83:68:32:18:78:5b:c9:36:81:39:
+                    25:9d:ab:4a:91:33:28:ff:95:19:3a:d4:94:a0:9a:
+                    d7:ad:ce:41:f1:b4:a0:9d:1f:87:f9:74:a6:ec:54:
+                    9b:48:d9:e2:3c:9b:fc:7f:24:ee:0b:a5:42:f1:00:
+                    5e:a8:1d:7b:e5:2f:ed:a1:8d:5f:fc:71:c8:8d:f1:
+                    7d:d2:bc:18:c6:6a:90:45:6a:09:b2:41:15:39:14:
+                    dc:c3:b8:30:44:13:f5:91:dd:9e:11:6c:0b:df:3d:
+                    45:b1
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Subject Key Identifier: 
+                B5:C8:70:D9:22:B5:43:B6:61:C6:9A:5F:2F:78:C5:FF:75:A8:DA:A4
+            X509v3 Authority Key Identifier: 
+                keyid:36:43:62:85:A5:2B:95:C5:71:14:A8:E8:D2:63:1C:93:5A:F3:F0:33
+                DirName:/SN=Harmon/GN=Russell/CN=Russell Harmon
+                serial:F7:5D:03:B1:92:FD:46:D7
+
+            X509v3 Subject Alternative Name: critical
+                email:russ@eatnumber1.com, DNS:eatnumber1.com, DNS:*.eatnumber1.com
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:https://crl.eatnumber1.com/ca-crl.pem
+
+            X509v3 Extended Key Usage: critical
+                TLS Web Server Authentication
+    Signature Algorithm: sha1WithRSAEncryption
+         55:ea:9f:55:51:2b:0b:6b:3c:59:43:43:24:db:75:4a:d4:cd:
+         7f:79:ea:36:c6:e9:c3:e7:d9:ab:b5:76:df:af:e0:b2:d8:21:
+         0c:c3:96:c7:96:b8:01:43:73:f0:d7:23:c8:fe:2f:e2:f4:ed:
+         4f:c9:b9:dc:b4:9d:33:e8:4e:de:24:57:0c:cd:c0:6c:ba:7a:
+         24:aa:54:75:34:68:7b:69:cc:11:b9:e9:08:cb:11:df:7c:15:
+         07:55:de:b8:7e:81:ab:50:ac:66:92:10:66:94:08:c3:5b:64:
+         4c:ba:c4:b6:63:49:a2:fd:bc:11:49:79:0c:54:bc:c0:85:c9:
+         13:e3:d6:b1:26:fe:6f:b9:30:3e:68:f5:b4:3f:ff:04:d1:4b:
+         39:ea:ac:80:83:d8:b3:90:17:8e:1b:62:7f:54:ac:7d:09:11:
+         68:a6:8c:a3:3d:9f:79:7c:3b:c8:f3:c2:13:c7:43:c4:fc:44:
+         36:5f:63:f4:ba:a2:84:0b:92:a4:32:72:bd:fb:e1:d1:b9:24:
+         d7:ae:e0:00:69:13:c6:c1:88:5e:61:8a:df:ab:e4:7b:de:fc:
+         79:8c:1a:db:6e:c3:84:e1:00:ee:7e:0f:2e:d2:7a:b6:c7:82:
+         98:89:5f:5b:09:53:9c:ef:28:95:19:7c:b1:fe:85:20:40:33:
+         98:a8:c0:63:b6:82:43:00:13:26:a2:f4:63:22:da:49:a2:3b:
+         54:2c:0e:d4:fa:e9:2b:48:67:c4:37:70:69:68:3a:d2:b1:c7:
+         0a:95:15:6c:e2:ac:3b:3d:4a:c0:c0:22:95:e5:9c:37:08:cf:
+         07:b6:29:98:6e:79:34:ea:1c:c7:ec:f6:ab:c2:54:ae:17:ae:
+         54:23:c5:be:b8:09:6d:44:54:0d:61:e6:14:64:52:24:3f:47:
+         2b:ec:fc:f7:92:31:ed:ca:e6:a7:d2:80:ab:cc:3e:3c:a8:86:
+         22:f3:bf:9f:14:c1:d4:a2:67:eb:86:4c:d6:01:53:a6:4f:fa:
+         06:31:54:31:8a:37:12:a6:a6:a9:b1:21:33:01:86:fd:29:d6:
+         39:0d:ab:a1:99:0f:77:8a:3e:11:71:5b:15:e2:b1:95:78:93:
+         14:8d:e9:7a:3b:f6:16:d8:35:ed:46:e2:58:d2:aa:ab:a1:43:
+         70:7b:81:05:b9:81:78:9f:f4:d6:9e:03:eb:71:55:5d:02:8f:
+         12:7f:ea:e2:04:34:74:f5:9c:34:67:63:68:b9:0f:cd:15:cb:
+         9c:8e:08:b8:05:0c:c5:f9:f7:11:f2:28:e1:a2:6c:8b:51:31:
+         80:00:30:d4:2d:90:19:fd:b7:a1:72:9c:a9:2f:92:b9:a3:9e:
+         95:09:77:87:4d:7b:27:21
+-----BEGIN CERTIFICATE-----
+MIIE+DCCAuCgAwIBAgIBATANBgkqhkiG9w0BAQUFADA8MQ8wDQYDVQQEDAZIYXJt
+b24xEDAOBgNVBCoMB1J1c3NlbGwxFzAVBgNVBAMMDlJ1c3NlbGwgSGFybW9uMB4X
+DTEzMDkzMDEzMzIyMFoXDTE4MDkyOTEzMzIyMFowGTEXMBUGA1UEAwwOZWF0bnVt
+YmVyMS5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC+HJj0GPpU
+m5PFdX6LSr5jilpaBjdjJzr5rsed7Plijbh46VvmnK6jjke+3MksE+aPGI+YoE2z
+WAuDGR3mXddsj8bVLmfXDWGlFbxWqt4A0BDIbRB50BFd5QycPNG4EatDkWiyg/fj
+exmCsSCOODkQs++OA86wNSujnzRwdd3m/UWDQbK0dvRgbMefk0ai1ycUOLG6ehph
+9CEgg2gyGHhbyTaBOSWdq0qRMyj/lRk61JSgmtetzkHxtKCdH4f5dKbsVJtI2eI8
+m/x/JO4LpULxAF6oHXvlL+2hjV/8cciN8X3SvBjGapBFagmyQRU5FNzDuDBEE/WR
+3Z4RbAvfPUWxAgMBAAGjggEmMIIBIjAdBgNVHQ4EFgQUtchw2SK1Q7ZhxppfL3jF
+/3Wo2qQwbAYDVR0jBGUwY4AUNkNihaUrlcVxFKjo0mMck1rz8DOhQKQ+MDwxDzAN
+BgNVBAQMBkhhcm1vbjEQMA4GA1UEKgwHUnVzc2VsbDEXMBUGA1UEAwwOUnVzc2Vs
+bCBIYXJtb26CCQD3XQOxkv1G1zBDBgNVHREBAf8EOTA3gRNydXNzQGVhdG51bWJl
+cjEuY29tgg5lYXRudW1iZXIxLmNvbYIQKi5lYXRudW1iZXIxLmNvbTA2BgNVHR8E
+LzAtMCugKaAnhiVodHRwczovL2NybC5lYXRudW1iZXIxLmNvbS9jYS1jcmwucGVt
+MBYGA1UdJQEB/wQMMAoGCCsGAQUFBwMBMA0GCSqGSIb3DQEBBQUAA4ICAQBV6p9V
+USsLazxZQ0Mk23VK1M1/eeo2xunD59mrtXbfr+Cy2CEMw5bHlrgBQ3Pw1yPI/i/i
+9O1PybnctJ0z6E7eJFcMzcBsunokqlR1NGh7acwRuekIyxHffBUHVd64foGrUKxm
+khBmlAjDW2RMusS2Y0mi/bwRSXkMVLzAhckT49axJv5vuTA+aPW0P/8E0Us56qyA
+g9izkBeOG2J/VKx9CRFopoyjPZ95fDvI88ITx0PE/EQ2X2P0uqKEC5KkMnK9++HR
+uSTXruAAaRPGwYheYYrfq+R73vx5jBrbbsOE4QDufg8u0nq2x4KYiV9bCVOc7yiV
+GXyx/oUgQDOYqMBjtoJDABMmovRjItpJojtULA7U+ukrSGfEN3BpaDrSsccKlRVs
+4qw7PUrAwCKV5Zw3CM8HtimYbnk06hzH7ParwlSuF65UI8W+uAltRFQNYeYUZFIk
+P0cr7Pz3kjHtyuan0oCrzD48qIYi87+fFMHUomfrhkzWAVOmT/oGMVQxijcSpqap
+sSEzAYb9KdY5DauhmQ93ij4RcVsV4rGVeJMUjel6O/YW2DXtRuJY0qqroUNwe4EF
+uYF4n/TWngPrcVVdAo8Sf+riBDR09Zw0Z2NouQ/NFcucjgi4BQzF+fcR8ijhomyL
+UTGAADDULZAZ/behcpypL5K5o56VCXeHTXsnIQ==
+-----END CERTIFICATE-----

@@ -2,6 +2,8 @@
 Description=Plex media server
 After=docker.service
 Requires=docker.service
+After=space.mount
+Requires=space.mount
 
 [Service]
 TimeoutStartSec=0

@@ -2,7 +2,7 @@
 Description=Nginx proxy server
 After=docker.service
 After=transmission.service
-Wants=transmission.service
+Requires=transmission.service
 Requires=docker.service
 
 [Service]

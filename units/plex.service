@@ -4,6 +4,8 @@ After=docker.service
 Requires=docker.service
 After=space.mount
 Requires=space.mount
+After=network.target
+Requires=network.target
 
 [Service]
 TimeoutStartSec=0

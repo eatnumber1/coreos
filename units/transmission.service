@@ -2,7 +2,7 @@
 Description=Transmission torrent client
 After=docker.service
 Requires=docker.service
-Before=transmission.service
+Before=nginx-proxy.service
 
 [Service]
 TimeoutStartSec=0

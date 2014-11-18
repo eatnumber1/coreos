@@ -2,7 +2,9 @@
 Description=Nginx proxy server
 After=docker.service
 After=transmission.service
+After=sabnzbd.service
 Requires=transmission.service
+Requires=sabnzbd.service
 Requires=docker.service
 
 [Service]

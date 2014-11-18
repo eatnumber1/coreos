@@ -10,5 +10,5 @@ TimeoutStartSec=0
 ExecStartPre=-/usr/bin/docker kill nginx-proxy
 ExecStartPre=-/usr/bin/docker rm nginx-proxy
 #ExecStartPre=/usr/bin/docker pull nginx-proxy
-ExecStart=/usr/bin/docker run --name nginx-proxy -p 80:80 -p 443:443 --link transmission:seedbox eatnumber1/nginx-proxy
+ExecStart=/usr/bin/docker run --name nginx-proxy -p 80:80 -p 443:443 --link transmission:seedbox -v /etc/localtime:/etc/localtime:ro eatnumber1/nginx-proxy
 ExecStop=/usr/bin/docker stop nginx-proxy

@@ -12,5 +12,5 @@ TimeoutStartSec=0
 ExecStartPre=-/usr/bin/docker kill plex
 ExecStartPre=-/usr/bin/docker rm plex
 ExecStartPre=/usr/bin/docker pull eatnumber1/plexpass
-ExecStart=/usr/bin/docker run --name plex -p 32400:32400 -v /space/media/plex/config:/config -v /space/media/plex/data:/data:ro eatnumber1/plexpass
+ExecStart=/usr/bin/docker run --name plex -p 32400:32400 -v /space/config/plex:/config -v /space/media/plex:/data:ro -v /etc/localtime:/etc/localtime:ro eatnumber1/plexpass
 ExecStop=/usr/bin/docker stop plex

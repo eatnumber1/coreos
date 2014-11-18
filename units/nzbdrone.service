@@ -1,0 +1,16 @@
+[Unit]
+Description=NZBDrone PVR
+After=docker.service
+Requires=docker.service
+After=space.mount
+Requires=space.mount
+After=network.target
+Requires=network.target
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill nzbdrone
+ExecStartPre=-/usr/bin/docker rm nzbdrone
+ExecStartPre=/usr/bin/docker pull needo/nzbdrone
+ExecStart=/usr/bin/docker run --name=nzbdrone -v /space/config/nzbdrone:/data -p 8989:8989 -v /etc/localtime:/etc/localtime:ro aostanin/nzbdrone
+ExecStop=/usr/bin/docker stop nzbdrone

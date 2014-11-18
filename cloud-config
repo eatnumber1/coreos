@@ -16,6 +16,16 @@ coreos:
     name: chihiro
     discovery: https://discovery.etcd.io/edccfeb3f12948075aaf0a1dddd0a19f
   units:
+    - name: settimezone.service
+      command: start
+      content: |
+        [Unit]
+        Description=Set the timezone
+
+        [Service]
+        ExecStart=/usr/bin/timedatectl set-timezone America/Los_Angeles
+        RemainAfterExit=yes
+        Type=oneshot
     - name: custom-reboot.service
       runtime: true
       content: |

@@ -18,5 +18,5 @@ TimeoutStartSec=0
 ExecStartPre=-/usr/bin/docker kill nzbdrone
 ExecStartPre=-/usr/bin/docker rm nzbdrone
 ExecStartPre=/usr/bin/docker pull aostanin/nzbdrone
-ExecStart=/usr/bin/docker run --name=nzbdrone -v /space/config/nzbdrone:/data -v /etc/localtime:/etc/localtime:ro --link sabnzbd:sabnzbd aostanin/nzbdrone
+ExecStart=/usr/bin/docker run --name=nzbdrone -v /space/config/nzbdrone:/data -v /space/media/sabnzbd:/downloads -v /etc/localtime:/etc/localtime:ro --link sabnzbd:sabnzbd aostanin/nzbdrone
 ExecStop=/usr/bin/docker stop nzbdrone

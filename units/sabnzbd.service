@@ -1,0 +1,16 @@
+[Unit]
+Description=SabNZBd usenet downloader
+After=docker.service
+Requires=docker.service
+After=space.mount
+Requires=space.mount
+After=network.target
+Requires=network.target
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill sabnzbd
+ExecStartPre=-/usr/bin/docker rm sabnzbd
+ExecStartPre=/usr/bin/docker pull needo/sabnzbd
+ExecStart=/usr/bin/docker run --name=sabnzbd -v /space/config/sabnzbd:/config -v /space/media/sabnzbd:/downloads -p 8080:8080 -v /etc/localtime:/etc/localtime:ro needo/sabnzbd
+ExecStop=/usr/bin/docker stop sabnzbd

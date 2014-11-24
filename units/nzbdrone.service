@@ -13,8 +13,7 @@ Requires=network.target
 After=sabnzbd.service
 Requires=sabnzbd.service
 
-After=plex.service
-Requires=plex.service
+Wants=plex.service
 
 [Service]
 TimeoutStartSec=0

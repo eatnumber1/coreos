@@ -79,7 +79,9 @@ coreos:
         [Unit]
         After=network-online.target
         Wants=network-online.target
-        Description=flannel is an etcd backed overlay network for containers
+        After=etcd.service
+        Wants=etcd.service
+        Description=etcd backed overlay network for containers
         [Service]
         Type=notify
         ExecStartPre=-/usr/bin/mkdir -p /opt/bin

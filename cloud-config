@@ -15,10 +15,10 @@ coreos:
   etcd:
     name: chihiro
     discovery: https://discovery.etcd.io/edccfeb3f12948075aaf0a1dddd0a19f
-    addr: $private_ipv4:4001
-    peer-addr: $private_ipv4:7001
+    addr: 192.168.1.2:4001
+    peer-addr: 192.168.1.2:7001
   fleet:
-    public-ip: $public_ipv4
+    public-ip: 192.168.1.2
     metadata: role=etcd,role=kubernetes
   units:
     - name: settimezone.service

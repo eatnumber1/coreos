@@ -15,10 +15,7 @@ coreos:
   etcd:
     name: chihiro
     discovery: https://discovery.etcd.io/f723272fcc43915fa5a069ea3dade781
-    addr: 192.168.1.2:4001
-    peer-addr: 192.168.1.2:7001
   fleet:
-    public-ip: 192.168.1.2
     metadata: role=etcd,role=kubernetes
   units:
     - name: settimezone.service
@@ -108,7 +105,7 @@ coreos:
         After=network-online.target
         [Service]
         ExecStartPre=-/usr/bin/mkdir -p /opt/bin
-        ExecStartPre=/usr/bin/wget -N -P /opt/bin http://storage.googleapis.com/snenv/setup-network-environment 
+        ExecStartPre=/usr/bin/wget -N -P /opt/bin http://storage.googleapis.com/snenv/setup-network-environment
         ExecStartPre=/usr/bin/chmod +x /opt/bin/setup-network-environment
         ExecStart=/opt/bin/setup-network-environment
         RemainAfterExit=yes

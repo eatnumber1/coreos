@@ -15,7 +15,7 @@ coreos:
   etcd:
     name: chihiro
     #discovery: https://discovery.etcd.io/5ec6be07000f9add06e321b0b5911f90
-    peers: 192.168.1.2:7001
+    #peers: 192.168.1.2:7001
     addr: 192.168.1.2:4001
     peer-addr: 192.168.1.2:7001
   fleet:

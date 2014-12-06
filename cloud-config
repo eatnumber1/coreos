@@ -14,7 +14,7 @@ coreos:
     reboot-strategy: off
   etcd:
     name: chihiro
-    discovery: https://discovery.etcd.io/edccfeb3f12948075aaf0a1dddd0a19f
+    discovery: https://discovery.etcd.io/f723272fcc43915fa5a069ea3dade781
     addr: 192.168.1.2:4001
     peer-addr: 192.168.1.2:7001
   fleet:

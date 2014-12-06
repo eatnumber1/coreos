@@ -14,9 +14,15 @@ coreos:
     reboot-strategy: off
   etcd:
     name: chihiro
-    discovery: https://discovery.etcd.io/f723272fcc43915fa5a069ea3dade781
+    #discovery: https://discovery.etcd.io/5ec6be07000f9add06e321b0b5911f90
+    peers: 192.168.1.2:7001
+    addr: 192.168.1.2:4001
+    peer-addr: 192.168.1.2:7001
   fleet:
+    public-ip: 192.168.1.2
     metadata: role=etcd,role=kubernetes
+  flannel:
+    etcd-prefix: /flannel.eatnumber1.com/network
   units:
     - name: settimezone.service
       command: start

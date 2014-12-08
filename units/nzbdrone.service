@@ -22,3 +22,5 @@ ExecStartPre=-/usr/bin/docker rm nzbdrone
 ExecStartPre=/usr/bin/docker pull aostanin/nzbdrone
 ExecStart=/usr/bin/docker run --name=nzbdrone -v /space/config/nzbdrone:/data -v /space/media/sabnzbd:/downloads -v /space/media/plex:/plex -v /etc/localtime:/etc/localtime:ro --link sabnzbd:sabnzbd --link plex:plex aostanin/nzbdrone
 ExecStop=/usr/bin/docker stop nzbdrone
+Restart=always
+RestartSec=10

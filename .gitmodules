@@ -1,6 +1,3 @@
 [submodule "plex"]
 	path = plex
 	url = https://github.com/eatnumber1/docker-plex.git
-[submodule "kubernetes"]
-	path = kubernetes
-	url = git://github.com/kelseyhightower/kubernetes-fleet-tutorial.git

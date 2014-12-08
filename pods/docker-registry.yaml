@@ -1,0 +1,14 @@
+apiVersion: v1beta1
+id: docker-registry
+desiredState:
+  manifest:
+    version: v1beta1
+    id: www
+    containers:
+      - name: docker-registry
+        image: google/docker-registry
+        envVar:
+            - name: GCS_BUCKET
+              value: eatnumber1-docker-registry
+            - name: GCP_OAUTH2_REFRESH_TOKEN
+              value: 

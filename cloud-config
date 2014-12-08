@@ -84,6 +84,7 @@ coreos:
         Description=etcd backed overlay network for containers
         [Service]
         Type=notify
+        ExecStartPre=-/usr/bin/etcdctl mk /flannel.eatnumber1.com/network/config '{"Network":"172.29.112.0/24"}'
         ExecStartPre=-/usr/bin/mkdir -p /opt/bin
         ExecStartPre=/usr/bin/wget -N -P /opt/bin http://storage.googleapis.com/flannel/flanneld
         ExecStartPre=/usr/bin/chmod +x /opt/bin/flanneld

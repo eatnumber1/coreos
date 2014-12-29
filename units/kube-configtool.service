@@ -4,6 +4,7 @@ Documentation=https://github.com/GoogleCloudPlatform/kubernetes
 
 [Service]
 ExecStart=/usr/bin/wget -N -P /opt/bin http://storage.googleapis.com/kubernetes/kubecfg
+ExecStart=/usr/bin/chmod +x /opt/bin/kubecfg
 RemainAfterExit=yes
 Type=oneshot
 

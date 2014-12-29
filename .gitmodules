@@ -1,3 +1,9 @@
 [submodule "plex"]
 	path = docker/plex
 	url = https://github.com/eatnumber1/docker-plex.git
+[submodule "docker/supervisor"]
+	path = docker/supervisor
+	url = https://github.com/eatnumber1/docker-supervisor.git
+[submodule "docker/glusterfs"]
+	path = docker/glusterfs
+	url = https://github.com/eatnumber1/docker-glusterfs.git

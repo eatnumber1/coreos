@@ -18,14 +18,14 @@ desiredState:
                 containerPort: 5000
             env:
               - name: GCS_BUCKET
-                value: eatnumber1-docker-registry
+                value: eatnumber1-docker-registry-dev
               - name: GCP_OAUTH2_REFRESH_TOKEN
                 value: 1/9mSJzurww0rGwENFvoWK5uU_5m4EyXzCdg3gcUJCVqsMEudVrK5jSpoR30zcRFq6
     labels:
-      environment: production
+      environment: development
       name: docker-registry
 labels:
-  environment: production
+  environment: development
   name: docker-registry
 
 # vim:ts=2 sw=2 sts=2 et

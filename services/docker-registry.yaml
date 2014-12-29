@@ -9,12 +9,12 @@ port: 5000
 # traffic to.
 selector:
   name: docker-registry
-  environment: production
+  environment: development
 # the container on each pod to connect to, can be a name
 # (e.g. 'www') or a number (e.g. 80)
 containerPort: docker-registry
 portalIp: 192.168.1.2
 labels:
-  environment: production
+  environment: development
 
 # vim:ts=2 sw=2 sts=2 et

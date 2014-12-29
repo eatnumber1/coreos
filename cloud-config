@@ -3,6 +3,7 @@
 hostname: chihiro
 ssh_authorized_keys:
   - ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAyukAK+pD6B3EkOlGtTC5Oyqx9N/1AZYqkaP0QEVn6pr+vkXlhE7CljfTT1egRGp76Ud18H3tCLDy6rhTpH5Kb+96eC8AWeKNrFbQWEjaBPbPlMUa96AeY+HXqH8JlHPkPu8k0BRVpnfeC6WKth8qU7j5CyqIH+SArKX5RvNgbqsxnR0X0XuvBKCiWt90yqnEC7JvCuznCKPeeLUOOjtf/9kYBfDIZdBKvIYxTZ7nx1WXQMeVxmsQrM29BPtZSXGhNQhDPHzIxDV8bNrXy5HXpCIQS3Qsv+T1TMgYjAl+C/1T+CW5wC+rLJTpdOjlRJThBYJw1xgQsfUIPedh3kEEpQ==
+  - ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA6NF8iallvQVp22WDkTkyrtvp9eWW6A8YVr+kz4TjGYe7gHzIw+niNltGEFHzD8+v1I2YJ6oXevct1YeS0o9HZyN1Q9qgCgzUFtdOKLv6IedplqoPkcmF0aYet2PkEDo3MlTBckFXPITAMzF8dJSIFo9D8HfdOV0IAdx4O7PtixWKn5y2hMNG0zQPyUecp4pzC6kivAIhyfHilFR61RGL+GPXQ2MWZWFYbAGjyiYJnAmCP3NOTd0jMZEnDkbUvxhMmBYSdETk1rRgm+R4LOzFUGaHqHDLKLX+FIPKcF96hrucXzcWyLbIbEgE98OHlnVYCzRdK8jlqm8tehUc9c9WhQ==
 users:
   - name: eatnumber1
     groups:
@@ -16,10 +17,10 @@ coreos:
     name: chihiro
     #discovery: https://discovery.etcd.io/5ec6be07000f9add06e321b0b5911f90
     #peers: 192.168.1.2:7001
-    addr: 192.168.1.2:4001
-    peer-addr: 192.168.1.2:7001
+    addr: $public_ipv4:4001
+    peer-addr: $public_ipv4:7001
   fleet:
-    public-ip: 192.168.1.2
+    public-ip: $public_ipv4
     metadata: role=etcd,role=kubernetes
   flannel:
     etcd-prefix: /flannel.eatnumber1.com/network
@@ -51,28 +52,6 @@ coreos:
 
         [Timer]
         OnCalendar=*-*-* 05:00:00
-    - name: var-lib-docker.mount
-      command: start
-      content: |
-        [Unit]
-        Description=Mount docker subvol to /var/lib/docker
-        Before=docker.service
-
-        [Mount]
-        What=/dev/disk/by-label/space
-        Where=/var/lib/docker
-        Type=btrfs
-        Options=subvol=docker
-    - name: space.mount
-      command: start
-      content: |
-        [Unit]
-        Description=Mount space to /space
-
-        [Mount]
-        What=/dev/disk/by-label/space
-        Where=/space
-        Type=btrfs
     - name: flannel.service
       command: start
       content: |
@@ -119,9 +98,53 @@ coreos:
         ExecStart=/opt/bin/setup-network-environment
         RemainAfterExit=yes
         Type=oneshot
+    - name: glusterfs.service
+      command: start
+      content: |
+        [Unit]
+        Description=Gluster Filesystem
+        After=docker.service
+        Requires=docker.service
+        After=network.target
+        Requires=network.target
+        [Service]
+        TimeoutStartSec=0
+        ExecStartPre=-/usr/bin/docker kill glusterfs
+        ExecStartPre=-/usr/bin/docker rm glusterfs
+        ExecStart=/usr/bin/docker run --name glusterfs -h glusterfs -v /etc/localtime:/etc/localtime:ro -v /glusterfs:/glusterfs --privileged -e VOLUME_NAME=space -e VOLUME_DIR=/glusterfs/space eatnumber1/glusterfs
+        ExecStop=/usr/bin/docker stop glusterfs
+    - name: setup-glusterfs-environment.service
+      command: start
+      content: |
+        [Unit]
+        Description=Discover glusterfs container IP and set up environment.
+        Requires=glusterfs.service
+        After=glusterfs.service
+        [Service]
+        ExecStart=/usr/bin/bash -c 'sleep 5; ( echo -n "GLUSTERFS_IP="; docker inspect --format "{{.NetworkSettings.IPAddress}}" glusterfs ) > /etc/glusterfs-environment'
+        RemainAfterExit=yes
+        Type=oneshot
+    - name: space.mount
+      command: start
+      content: |
+        [Unit]
+        Description=NFS mount of Gluster filesystem
+        After=glusterfs.service
+        Requires=glusterfs.service
+        After=rpc-statd.service
+        Requires=rpc-statd.service
+        After=setup-glusterfs-environment.service
+        Requires=setup-glusterfs-environment.service
+        [Mount]
+        EnvironmentFile=/etc/glusterfs-environment
+        What=${GLUSTERFS_IP}:/space
+        Where=/space
+        Type=nfs
     - name: etcd.service
       command: start
     - name: fleet.service
+      command: start
+    - name: docker.service
       command: start
 
 # vim:et ts=2 sw=2 sts=2 ai

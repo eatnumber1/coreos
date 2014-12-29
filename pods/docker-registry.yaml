@@ -1,16 +1,31 @@
-apiVersion: v1beta1
 id: docker-registry
+apiVersion: v1beta1
+kind: ReplicationController
 desiredState:
-  manifest:
-    version: v1beta1
-    id: www
-    containers:
-      - name: docker-registry
-        image: google/docker-registry
-        envVar:
-            - name: GCS_BUCKET
-              value: eatnumber1-docker-registry
-            - name: GCP_OAUTH2_REFRESH_TOKEN
-              value: 1/9mSJzurww0rGwENFvoWK5uU_5m4EyXzCdg3gcUJCVqsMEudVrK5jSpoR30zcRFq6
+  replicas: 1
+  replicaSelector:
+    name: docker-registry
+  podTemplate:
+    desiredState:
+      manifest:
+        version: v1beta1
+        id: docker-registry
+        containers:
+          - name: docker-registry
+            image: google/docker-registry
+            ports:
+              - name: docker-registry
+                containerPort: 5000
+            env:
+              - name: GCS_BUCKET
+                value: eatnumber1-docker-registry
+              - name: GCP_OAUTH2_REFRESH_TOKEN
+                value: 1/9mSJzurww0rGwENFvoWK5uU_5m4EyXzCdg3gcUJCVqsMEudVrK5jSpoR30zcRFq6
+    labels:
+      environment: production
+      name: docker-registry
 labels:
-    - environment: production
+  environment: production
+  name: docker-registry
+
+# vim:ts=2 sw=2 sts=2 et

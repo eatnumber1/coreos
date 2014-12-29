@@ -1,0 +1,20 @@
+kind: Service
+apiVersion: v1beta1
+# must be a DNS compatible name
+id: docker-registry
+# the port that this service should serve on
+port: 5000
+# just like the selector in the replication controller,
+# but this time it identifies the set of pods to load balance
+# traffic to.
+selector:
+  name: docker-registry
+  environment: production
+# the container on each pod to connect to, can be a name
+# (e.g. 'www') or a number (e.g. 80)
+containerPort: docker-registry
+portalIp: 192.168.1.2
+labels:
+  environment: production
+
+# vim:ts=2 sw=2 sts=2 et

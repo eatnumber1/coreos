@@ -4,6 +4,3 @@
 [submodule "docker/supervisor"]
 	path = docker/supervisor
 	url = https://github.com/eatnumber1/docker-supervisor.git
-[submodule "docker/glusterfs"]
-	path = docker/glusterfs
-	url = https://github.com/eatnumber1/docker-glusterfs.git

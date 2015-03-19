@@ -25,16 +25,6 @@ coreos:
   flannel:
     etcd-prefix: /flannel.eatnumber1.com/network
   units:
-    - name: systemd-networkd-wait-online.service 
-      command: start
-      content: | 
-        [Unit]
-        Description=Foo
-
-        [Service] 
-        ExecStart=/usr/bin/sleep 10
-        RemainAfterExit=yes
-        Type=oneshot
     - name: settimezone.service
       command: start
       content: |

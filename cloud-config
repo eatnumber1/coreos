@@ -17,10 +17,10 @@ coreos:
     name: chihiro
     #discovery: https://discovery.etcd.io/5ec6be07000f9add06e321b0b5911f90
     #peers: 192.168.1.2:7001
-    addr: $public_ipv4:4001
-    peer-addr: $public_ipv4:7001
+    addr: 192.168.1.2:4001
+    peer-addr: 192.168.1.2:7001
   fleet:
-    public-ip: $public_ipv4
+    public-ip: 192.168.1.2
     metadata: role=etcd,role=kubernetes
   flannel:
     etcd-prefix: /flannel.eatnumber1.com/network
@@ -52,6 +52,28 @@ coreos:
 
         [Timer]
         OnCalendar=*-*-* 05:00:00
+    - name: var-lib-docker.mount
+      command: start
+      content: |
+        [Unit]
+        Description=Mount docker subvol to /var/lib/docker
+        Before=docker.service
+
+        [Mount]
+        What=/dev/disk/by-label/space
+        Where=/var/lib/docker
+        Type=btrfs
+        Options=subvol=docker
+    - name: space.mount
+      command: start
+      content: |
+        [Unit]
+        Description=Mount space to /space
+
+        [Mount]
+        What=/dev/disk/by-label/space
+        Where=/space
+        Type=btrfs
     - name: flannel.service
       command: start
       content: |

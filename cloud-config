@@ -98,53 +98,9 @@ coreos:
         ExecStart=/opt/bin/setup-network-environment
         RemainAfterExit=yes
         Type=oneshot
-    - name: glusterfs.service
-      command: start
-      content: |
-        [Unit]
-        Description=Gluster Filesystem
-        After=docker.service
-        Requires=docker.service
-        After=network.target
-        Requires=network.target
-        [Service]
-        TimeoutStartSec=0
-        ExecStartPre=-/usr/bin/docker kill glusterfs
-        ExecStartPre=-/usr/bin/docker rm glusterfs
-        ExecStart=/usr/bin/docker run --name glusterfs -h glusterfs -v /etc/localtime:/etc/localtime:ro -v /glusterfs:/glusterfs --privileged -e VOLUME_NAME=space -e VOLUME_DIR=/glusterfs/space eatnumber1/glusterfs
-        ExecStop=/usr/bin/docker stop glusterfs
-    - name: setup-glusterfs-environment.service
-      command: start
-      content: |
-        [Unit]
-        Description=Discover glusterfs container IP and set up environment.
-        Requires=glusterfs.service
-        After=glusterfs.service
-        [Service]
-        ExecStart=/usr/bin/bash -c 'sleep 5; ( echo -n "GLUSTERFS_IP="; docker inspect --format "{{.NetworkSettings.IPAddress}}" glusterfs ) > /etc/glusterfs-environment'
-        RemainAfterExit=yes
-        Type=oneshot
-    - name: space.mount
-      command: start
-      content: |
-        [Unit]
-        Description=NFS mount of Gluster filesystem
-        After=glusterfs.service
-        Requires=glusterfs.service
-        After=rpc-statd.service
-        Requires=rpc-statd.service
-        After=setup-glusterfs-environment.service
-        Requires=setup-glusterfs-environment.service
-        [Mount]
-        EnvironmentFile=/etc/glusterfs-environment
-        What=${GLUSTERFS_IP}:/space
-        Where=/space
-        Type=nfs
     - name: etcd.service
       command: start
     - name: fleet.service
-      command: start
-    - name: docker.service
       command: start
 
 # vim:et ts=2 sw=2 sts=2 ai

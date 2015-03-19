@@ -4,3 +4,6 @@
 [submodule "docker/supervisor"]
 	path = docker/supervisor
 	url = https://github.com/eatnumber1/docker-supervisor.git
+[submodule "docker/google-musicmanager"]
+	path = docker/google-musicmanager
+	url = https://github.com/eatnumber1/docker-google-musicmanager.git

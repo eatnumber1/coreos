@@ -52,6 +52,17 @@ coreos:
 
         [Timer]
         OnCalendar=*-*-* 05:00:00
+    - name: space.mount
+      command: start
+      content: |
+        [Unit]
+        Description=Mount space to /space
+
+        [Mount]
+        What=/.space
+        Where=/space
+        Type=none
+        Options=rbind
     - name: flannel.service
       command: start
       content: |

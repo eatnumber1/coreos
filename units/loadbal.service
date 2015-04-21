@@ -14,7 +14,7 @@ Requires=loadbal-amb-nzbdrone.service
 Restart=on-failure
 ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=-/usr/bin/docker rm %n
-ExecStart=/usr/bin/docker run --rm --name %n -p 80:80 -p 443:443 --link loadbal-amb-transmission.service:seedbox --link loadbal-amb-sabnzbd.service:usenet --link loadbal-amb-nzbdrone.service:tv -v /etc/localtime:/etc/localtime:ro eatnumber1/nginx-proxy
+ExecStart=/usr/bin/docker run --name %n -p 80:80 -p 443:443 --link loadbal-amb-transmission.service:seedbox --link loadbal-amb-sabnzbd.service:usenet --link loadbal-amb-nzbdrone.service:tv -v /etc/localtime:/etc/localtime:ro eatnumber1/nginx-proxy
 ExecStop=/usr/bin/docker stop %n
 
 [X-Fleet]

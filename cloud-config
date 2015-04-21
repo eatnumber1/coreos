@@ -69,8 +69,6 @@ coreos:
       content: |
         [Unit]
         Description=Mount space to /space
-        Requires=space.service
-        After=space.service
 
         [Mount]
         What=/dev/disk/by-label/space

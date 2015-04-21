@@ -21,20 +21,10 @@ coreos:
     peer-addr: $public_ipv4:7001
   fleet:
     public-ip: $public_ipv4
-    metadata: role=etcd,role=kubernetes
   flannel:
     etcd-prefix: /flannel.eatnumber1.com/network
+    interface: $public_ipv4
   units:
-    - name: systemd-networkd-wait-online.service 
-      command: start
-      content: | 
-        [Unit]
-        Description=Foo
-
-        [Service] 
-        ExecStart=/usr/bin/sleep 10
-        RemainAfterExit=yes
-        Type=oneshot
     - name: settimezone.service
       command: start
       content: |
@@ -62,17 +52,30 @@ coreos:
 
         [Timer]
         OnCalendar=*-*-* 05:00:00
+    - name: space.service
+      command: start
+      content: |
+        [Unit]
+        Description=Create /.space
+
+        [Service]
+        ExecStart=/bin/mkdir -p /.space
+        RemainAfterExit=yes
+        Type=oneshot
     - name: space.mount
       command: start
       content: |
         [Unit]
         Description=Mount space to /space
+        Requires=space.service
+        After=space.service
 
         [Mount]
         What=/.space
         Where=/space
         Type=none
         Options=rbind
+      command: start
     - name: flanneld.service
       drop-ins:
         - name: 50-network-config.conf
@@ -81,6 +84,7 @@ coreos:
             ExecStartPre=/usr/bin/etcdctl set /flannel.eatnumber1.com/network/config '{"Network":"172.29.112.0/24"}'
       command: start
     - name: setup-network-environment.service
+      runtime: true
       command: start
       content: |
         [Unit]
@@ -88,9 +92,15 @@ coreos:
         Documentation=https://github.com/kelseyhightower/setup-network-environment
         Requires=network-online.target
         After=network-online.target
+        Requires=docker.service
+        After=docker.service
+        Requires=flanneld.service
+        After=flanneld.service
+
         [Service]
         ExecStartPre=-/usr/bin/mkdir -p /opt/bin
-        ExecStartPre=/usr/bin/wget -N -P /opt/bin http://storage.googleapis.com/snenv/setup-network-environment
+        ExecStartPre=/usr/bin/wget -P /opt/bin https://github.com/kelseyhightower/setup-network-environment/releases/download/v1.0.0/setup-network-environment
+
         ExecStartPre=/usr/bin/chmod +x /opt/bin/setup-network-environment
         ExecStart=/opt/bin/setup-network-environment
         RemainAfterExit=yes
@@ -99,5 +109,13 @@ coreos:
       command: start
     - name: fleet.service
       command: start
+      drop-ins:
+        - name: 01-deps.conf
+          content: |
+            [Unit]
+            Requires=setup-network-environment.service
+            After=setup-network-environment.service
+            Requires=flanneld.service
+            After=flanneld.service
 
 # vim:et ts=2 sw=2 sts=2 ai

@@ -5,8 +5,8 @@ Requires=docker.service
 
 [Service]
 TimeoutStartSec=0
-ExecStartPre=-/usr/bin/docker kill sandbox
+ExecStartPre=-/usr/bin/docker kill %n
 ExecStartPre=/usr/bin/docker pull tutum/fedora
-#ExecStart=/usr/bin/docker run --name sandbox -p 2222:22 -v /space:/space -h sandbox -v /etc/localtime:/etc/localtime:ro tutum/fedora
-ExecStart=/usr/bin/docker start -a sandbox
-ExecStop=/usr/bin/docker stop sandbox
+#ExecStart=/usr/bin/docker run --name %n -p 2222:22 -v /space:/space -h sandbox -v /etc/localtime:/etc/localtime:ro tutum/fedora
+ExecStart=/usr/bin/docker start -a %n
+ExecStop=/usr/bin/docker stop %n

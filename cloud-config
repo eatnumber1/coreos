@@ -17,8 +17,8 @@ coreos:
     name: chihiro
     #discovery: https://discovery.etcd.io/5ec6be07000f9add06e321b0b5911f90
     #peers: 192.168.1.2:7001
-    addr: 192.168.1.2:4001
-    peer-addr: 192.168.1.2:7001
+    #addr: 192.168.1.2:4001
+    #peer-addr: 192.168.1.2:7001
   fleet:
     public-ip: 192.168.1.2
   flannel:
@@ -97,7 +97,7 @@ coreos:
 
         [Service]
         # Sleep to wait for docker0 to come up
-        ExecStartPre=-/usr/bin/sleep 3
+        ExecStartPre=-/usr/bin/sleep 10
         ExecStartPre=-/usr/bin/mkdir -p /opt/bin
         ExecStartPre=/usr/bin/curl -L -o /opt/bin/setup-network-environment https://github.com/kelseyhightower/setup-network-environment/releases/download/v1.0.0/setup-network-environment
 

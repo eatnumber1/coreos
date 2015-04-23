@@ -4,3 +4,6 @@
 [submodule "docker/supervisor"]
 	path = docker/supervisor
 	url = https://github.com/eatnumber1/docker-supervisor.git
+[submodule "units"]
+	path = units
+	url = https://github.com/eatnumber1/coreos-units.git

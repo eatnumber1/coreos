@@ -7,3 +7,6 @@
 [submodule "units"]
 	path = units
 	url = https://github.com/eatnumber1/coreos-units.git
+[submodule "docker/ambassadord"]
+	path = docker/ambassadord
+	url = https://github.com/progrium/ambassadord.git

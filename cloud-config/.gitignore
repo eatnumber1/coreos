@@ -1,0 +1,4 @@
+discovery.inc
+m4/passwords.inc
+m4/license.inc
+cloud-config.yaml
